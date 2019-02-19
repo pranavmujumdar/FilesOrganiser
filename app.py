@@ -40,7 +40,7 @@ button2.pack()
 
 def Submit():
 	Sorter(path=filename,all=i1.get(),Docs=i2.get(),Images=i3.get(),Videos=i4.get(),WebPages=i9.get(),ArchiveFiles=i5.get(),AudioFiles=i6.get(),Setups=i7.get(), ShellScripts=i8.get(), XML=i10.get())
-
+	window.quit() #Closes the Window after running the sorter function
 
 # +++++ Variables/Declaration for the File Organiser +++++
 
@@ -83,46 +83,49 @@ def Sorter(**kwargs):
 			# print(file)
 			file_extension = file.split(".")[-1].lower()
 			if file_extension in FILE_FORMATS:
-				to_move_path = Path(FILE_FORMATS[file_extension]) 
+				to_move_path = path +'/'+ FILE_FORMATS[file_extension]
+				# print(to_move_path)
+				dest = Path(to_move_path)
+				# print(dest)
 				if kwargs['all']==1:
-					os.makedirs(to_move_path, exist_ok=True)
-					shutil.move(file, to_move_path)
+					os.makedirs(dest, exist_ok=True)
+					shutil.move(file, dest)
 				if kwargs['Docs']==1:
 					if file_extension in Documents:
-						os.makedirs(to_move_path, exist_ok=True)
-						shutil.move(file, to_move_path)
+						os.makedirs(dest, exist_ok=True)
+						shutil.move(file, dest)
 				if kwargs['Images']==1:
 					if file_extension in Images:
-						os.makedirs(to_move_path, exist_ok=True)
-						shutil.move(file, to_move_path)
+						os.makedirs(dest, exist_ok=True)
+						shutil.move(file, dest)
 				if kwargs['Videos']==1:
 					if file_extension in Videos:
-						os.makedirs(to_move_path, exist_ok=True)
-						shutil.move(file, to_move_path)
+						os.makedirs(dest, exist_ok=True)
+						shutil.move(file, dest)
 				if kwargs['WebPages']==1:
 					if file_extension in WebPages:
-						os.makedirs(to_move_path, exist_ok=True)
-						shutil.move(file, to_move_path)
+						os.makedirs(dest, exist_ok=True)
+						shutil.move(file, dest)
 				if kwargs['ArchiveFiles']==1:
 					if file_extension in ArchiveFiles:
-						os.makedirs(to_move_path, exist_ok=True)
-						shutil.move(file, to_move_path)
+						os.makedirs(dest, exist_ok=True)
+						shutil.move(file, dest)
 				if kwargs['AudioFiles']==1:
 					if file_extension in AudioFiles:
-						os.makedirs(to_move_path, exist_ok=True)
-						shutil.move(file, to_move_path)
+						os.makedirs(dest, exist_ok=True)
+						shutil.move(file, dest)
 				if kwargs['XML']==1:
 					if file_extension in XML:
-						os.makedirs(to_move_path, exist_ok=True)
-						shutil.move(file, to_move_path)
+						os.makedirs(dest, exist_ok=True)
+						shutil.move(file, dest)
 				if kwargs['Setups']==1:
 					if file_extension in Setups:
-						os.makedirs(to_move_path, exist_ok=True)
-						shutil.move(file, to_move_path)
+						os.makedirs(dest, exist_ok=True)
+						shutil.move(file, dest)
 				if kwargs['ShellScripts']==1:
 					if file_extension in ShellScripts:
-						os.makedirs(to_move_path, exist_ok=True)
-						shutil.move(file, to_move_path)
+						os.makedirs(dest, exist_ok=True)
+						shutil.move(file, dest)
 
 
 # +++++ Variable Declaration for storing Checkbox Values
