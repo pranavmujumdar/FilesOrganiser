@@ -3,40 +3,46 @@ import shutil
 import tkinter as tk
 import glob
 from pathlib import Path
-
+from tkinter import filedialog
 
 window = tk.Tk()
 window.title('Organiser')
 window.geometry("480x360")
 
-#Label - Location
-label1=tk.Label(text="please enter the location: ")
+# +++++ Title Label +++++
+
+label1=tk.Label(text="Browse to the directory to organise")
 label1.pack()
-#grid(column=0, row=1)		---- cannot use grid() with pack()
-
-#Entry - Location
-entry1=tk.Entry()
-entry1.pack()
-entry1=tk.StringVar()		#---- maybe we cannot use this with entry() variable
-#grid(column=2, row=1)		---- cannot use grid() with pack()
 
 
-#Function Submit
+# ++++++ Browse Button Function ++++++
+
+def browse_button():
+    # Allow user to select a directory and store it in global var
+    # called folder_path
+    global folder_path
+    global filename
+    filename = filedialog.askdirectory()
+    folder_path.set(filename)
+    # print(filename)
+
+
+# +++++ Browse Button GUI elements +++++
+
+folder_path = tk.StringVar()
+lbl1 = tk.Label(master=window,textvariable=folder_path)
+lbl1.pack()
+button2 = tk.Button(text="Browse", command=browse_button)
+button2.pack()
+
+
+# +++++ Submit Function that calls the organiser on press +++++
+
 def Submit():
-	Sorter(all=i1.get(),Docs=i2.get(),Images=i3.get(),Videos=i4.get(),WebPages=i9.get(),ArchiveFiles=i5.get(),AudioFiles=i6.get(),Setups=i7.get(), ShellScripts=i8.get(), XML=i10.get())
+	Sorter(path=filename,all=i1.get(),Docs=i2.get(),Images=i3.get(),Videos=i4.get(),WebPages=i9.get(),ArchiveFiles=i5.get(),AudioFiles=i6.get(),Setups=i7.get(), ShellScripts=i8.get(), XML=i10.get())
 
-#for i in range(0 to 7)		---- tried using for loop, unable, try again
-i1=tk.IntVar()
-i2=tk.IntVar()
-i3=tk.IntVar()
-i4=tk.IntVar()
-i5=tk.IntVar()
-i6=tk.IntVar()
-i7=tk.IntVar()
-i8=tk.IntVar()
-i9=tk.IntVar()
-i10=tk.IntVar()
-# Actual Organiser
+
+# +++++ Variables/Declaration for the File Organiser +++++
 
 DIRECTORIES = {
 "WebPages":["html5", "html", "htm", "xhtml"],
@@ -67,9 +73,8 @@ FILE_FORMATS = {file_format: directory
                 for directory, file_formats in DIRECTORIES.items() 
                 for file_format in file_formats} 
 
-os.getcwd() #os.getcwd() gets current working directory
-path = str(input("Enter Path of the folder you want to organise: "))
-files = glob.glob(path + '/*')
+
+# +++++ Organiser Function +++++
 
 def Sorter(**kwargs):
 	for file in files:
@@ -118,8 +123,23 @@ def Sorter(**kwargs):
 					if file_extension in ShellScripts:
 						os.makedirs(to_move_path, exist_ok=True)
 						shutil.move(file, to_move_path)
+
+
+# +++++ Variable Declaration for storing Checkbox Values
+
+i1=tk.IntVar()
+i2=tk.IntVar()
+i3=tk.IntVar()
+i4=tk.IntVar()
+i5=tk.IntVar()
+i6=tk.IntVar()
+i7=tk.IntVar()
+i8=tk.IntVar()
+i9=tk.IntVar()
+i10=tk.IntVar()
 		
-#Check_Box1
+# ++++++ Check_Boxes ++++++
+
 c1=tk.Checkbutton(window, text="All", variable=i1)
 c1.pack()
 c2=tk.Checkbutton(window, text="Documents", variable=i2)
@@ -142,9 +162,9 @@ c10=tk.Checkbutton(window, text="WebPages", variable=i7)
 c10.pack()
 
 
-#Button
-b1=tk.Button(window, text="Submit", command=Submit)
-b1.pack()
+# +++++++Submit Button+++++++
 
+SubmitButton=tk.Button(window, text="Submit", command=Submit)
+SubmitButton.pack()
 
 window.mainloop()
