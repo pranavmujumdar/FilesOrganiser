@@ -158,6 +158,7 @@ i10=tk.IntVar()
 
 c1=tk.Checkbutton(window, text="All", variable=i1)
 c1.pack()
+c1.select()
 c2=tk.Checkbutton(window, text="Documents", variable=i2)
 c2.pack()
 c3=tk.Checkbutton(window, text="Images", variable=i3)
