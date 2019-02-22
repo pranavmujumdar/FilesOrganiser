@@ -39,7 +39,6 @@ button2.pack()
 def quit_prompt():
 	if askquestion(title="Quit?", message="Files have been sorted! you wanna quit?") =='yes':
 		window.quit()
-		exit()
 
 # Exception handling
 def enter_folder_dir():
@@ -161,22 +160,31 @@ c1.pack()
 c1.select()
 c2=tk.Checkbutton(window, text="Documents", variable=i2)
 c2.pack()
+c2=tk.Checkbutton(window, text="Documents", variable=i2)
 c3=tk.Checkbutton(window, text="Images", variable=i3)
 c3.pack()
+c3.bind('<Button-1>', lambda dummy=0:c1.deselect())
 c4=tk.Checkbutton(window, text="Videos", variable=i4)
 c4.pack()
+c4.bind('<Button-1>', lambda dummy=0:c1.deselect())
 c5=tk.Checkbutton(window, text="Archives", variable=i5)
 c5.pack()
+c5.bind('<Button-1>', lambda dummy=0:c1.deselect())
 c6=tk.Checkbutton(window, text="Audio", variable=i6)
 c6.pack()
+c6.bind('<Button-1>', lambda dummy=0:c1.deselect())
 c7=tk.Checkbutton(window, text="Exe", variable=i7)
 c7.pack()
+c7.bind('<Button-1>', lambda dummy=0:c1.deselect())
 c8=tk.Checkbutton(window, text="ShellScripts", variable=i8)
 c8.pack()
+c8.bind('<Button-1>', lambda dummy=0:c1.deselect())
 c9=tk.Checkbutton(window, text="WebPages", variable=i9)
 c9.pack()
+c9.bind('<Button-1>', lambda dummy=0:c1.deselect())
 c10=tk.Checkbutton(window, text="WebPages", variable=i10)
 c10.pack()
+c10.bind('<Button-1>', lambda dummy=0:c1.deselect())
 
 
 # +++++++Submit Button+++++++
