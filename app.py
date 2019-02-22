@@ -35,12 +35,25 @@ lbl1.pack()
 button2 = tk.Button(text="Browse", command=browse_button)
 button2.pack()
 
+# +++++ Quit or continue prompt ++++
+def quit_prompt():
+	if askquestion(title="Quit?", message="Files have been sorted! you wanna quit?") =='yes':
+		window.quit()
+		exit()
+
+# Exception handling
+def enter_folder_dir():
+	showwarning(title="Error", message="Please Select a folder first")
 
 # +++++ Submit Function that calls the organiser on press +++++
 
 def Submit():
-	Sorter(path=filename,all=i1.get(),Docs=i2.get(),Images=i3.get(),Videos=i4.get(),WebPages=i9.get(),ArchiveFiles=i5.get(),AudioFiles=i6.get(),Setups=i7.get(), ShellScripts=i8.get(), XML=i10.get())
-	window.quit() #Closes the Window after running the sorter function
+	try:
+		Sorter(path=filename, all=i1.get(),Docs=i2.get(),Images=i3.get(),Videos=i4.get(),WebPages=i9.get(),ArchiveFiles=i5.get(),AudioFiles=i6.get(),Setups=i7.get(), ShellScripts=i8.get(), XML=i10.get())
+		quit_prompt()
+	except Exception as e:
+		enter_folder_dir()
+
 
 # +++++ Variables/Declaration for the File Organiser +++++
 
@@ -157,11 +170,11 @@ c6=tk.Checkbutton(window, text="Audio", variable=i6)
 c6.pack()
 c7=tk.Checkbutton(window, text="Exe", variable=i7)
 c7.pack()
-c8=tk.Checkbutton(window, text="ShellScripts", variable=i7)
+c8=tk.Checkbutton(window, text="ShellScripts", variable=i8)
 c8.pack()
-c9=tk.Checkbutton(window, text="WebPages", variable=i7)
+c9=tk.Checkbutton(window, text="WebPages", variable=i9)
 c9.pack()
-c10=tk.Checkbutton(window, text="WebPages", variable=i7)
+c10=tk.Checkbutton(window, text="WebPages", variable=i10)
 c10.pack()
 
 
