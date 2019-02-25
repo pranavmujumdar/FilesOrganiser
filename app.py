@@ -4,6 +4,7 @@ import tkinter as tk
 import glob
 from pathlib import Path
 from tkinter import filedialog
+from tkinter.messagebox import *
 
 window = tk.Tk()
 window.title('Organiser')
@@ -25,6 +26,14 @@ def browse_button():
     filename = filedialog.askdirectory()
     folder_path.set(filename)
     # print(filename)
+
+def quit_prompt():
+	if askquestion(title="Quit?", message="Files have been sorted! you wanna quit?") =='yes':
+		window.quit()
+		exit()
+
+def enter_folder_dir():
+	showwarning(title="Error", message="Please Select a folder first")
 
 
 # +++++ Browse Button GUI elements +++++
@@ -139,7 +148,6 @@ def Sorter(**kwargs):
 						os.makedirs(dest, exist_ok=True)
 						shutil.move(file, dest)
 
-
 # +++++ Variable Declaration for storing Checkbox Values
 
 i1=tk.IntVar()
@@ -160,6 +168,7 @@ c1.pack()
 c1.select()
 c2=tk.Checkbutton(window, text="Documents", variable=i2)
 c2.pack()
+c2.bind('<Button-1>', lambda dummy=0:c1.deselect())
 c2=tk.Checkbutton(window, text="Documents", variable=i2)
 c3=tk.Checkbutton(window, text="Images", variable=i3)
 c3.pack()
